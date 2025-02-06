@@ -1,0 +1,50 @@
+.table {
+  color: white;
+
+  thead {
+    border-bottom: 3px solid white;
+  }
+
+  tbody {
+    margin-top: 1rem;
+  }
+
+  th {
+    padding: 8px;
+  }
+
+  .add-task{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    input{
+      width: 70%;
+      background-color: transparent;
+      border:none;
+      font-style: italic;
+      font-size: 20px;
+      padding-left: 5px;
+      color: #fff;
+      border-radius: 5px;
+
+      &:focus{
+        outline: none;
+      }
+      &::placeholder {
+        color: #fff;
+        opacity: 1; 
+      }
+    }
+  }
+
+  .add-task-btn {
+    background-color: transparent;
+    padding: 0 10px;
+    font-size: 2rem;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+}

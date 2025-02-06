@@ -1,63 +1,16 @@
-import { useState } from "react";
-import "./Modal.scss";
+import React from 'react';
+import './index.scss';
 
-function Modal(props) {
-  const [todoInput, setTodoInput] = useState(
-    props.selectedTodo ? props.selectedTodo.name : ""
-  );
-
-  const onClickNo = () => {
-    props.onCloseModal(false);
-  };
-
-  const onClickYes = () => {
-    if (props.isEdit) {
-      if (todoInput == "") {
-        alert("Digite uma tarefa");
-      } else {
-        props.onCloseModal(true, todoInput);
-      }
-    } else {
-      props.onCloseModal(true);
-    }
-  };
-
-  const onTodoInputChange = (e) => {
-    setTodoInput(e.target.value);
-  };
+export default function Modal({isOpen, onClose, children}) {
+  if(!isOpen){
+    return 
+  }
 
   return (
-    <div id="modal">
-      <p id="title">
-        {props.isEdit
-          ? "Deseja editar esse item?"
-          : "Deseja excluir esse item?"}
-      </p>
-      {props.isEdit ? (
-        <>
-          <p id="text">Colocar as descrições das tarefas aqui.</p>
-          <div className="input-container">
-            <input
-              value={todoInput}
-              type="text"
-              placeholder="Editar Tarefa..."
-              onChange={onTodoInputChange}
-            />
-          </div>
-        </>
-      ) : (
-        <div className="todo-name">{props.selectedTodo.name}</div>
-      )}
-      <div id="buttons">
-        <button id="no" onClick={onClickNo}>
-          Não
-        </button>
-        <button id="yes" onClick={onClickYes}>
-          Sim
-        </button>
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        {children}
       </div>
     </div>
   );
 }
-
-export default Modal;
